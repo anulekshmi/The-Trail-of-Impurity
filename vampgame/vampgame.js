@@ -1,6 +1,6 @@
-gap = randGap();                
+gap = randGap();
 var myObstacles = [];
-var enemytypes = ["gper","oper", "pper"]
+var enemytypes = ["gper","oper", "pper", "tper"]
 var bar1;
 //let bar1=
 //var greentype=["gper"]
@@ -15,9 +15,12 @@ goodp.src = "gper.png";
 
 var selfishp = new Image();                 // selfish person class (loading the black charachter)
 selfishp.src = "oper.png";
-                                 
+
 var dishonestp = new Image();              // dishonest person class (loading the purple charachter)
 dishonestp.src = "pper.png";
+
+var treachp = new Image();              // dishonest person class (loading the purple charachter)
+treachp.src = "tper.png";
 
 function startGame() {              //Player control 1
     gamearea.start();mki8
@@ -33,7 +36,7 @@ function jump() {           //Player control2
 function randGap() {
     return Math.floor(200 + Math.random() * (500 - 200 + 1));
 }
-var scoreText = {                                       // Result Display class 
+var scoreText = {                                       // Result Display class
     x: 270,
     y: 100,
     update: function (text) {                               // updates itself through info from the vampire class
@@ -46,26 +49,26 @@ var player = {                                  //Player class controls the vamp
     x: 20,
     y: 420,
     speedY: 0,
-    update: function () {                      
+    update: function () {
         if (this.y < 420) {
             gamearea.context.drawImage(standimage, this.x, this.y - 40, 120, 120);
         }
         else {
-            
+
                 gamearea.context.drawImage(standimage, this.x, this.y - 40, 90, 90);
         }
     },
-    update2: function () {                      
+    update2: function () {
         if (player.crashWith(myObstacles[i])) {
             gamearea.context.drawImage(standimage, this.x, this.y - 40, 120, 120);
         }
         else {
-            
+
                 gamearea.context.drawImage(standimage, this.x, this.y - 40, 90, 90);
         }
     },
-    
-    newPos: function () {                            // position of vapire gets updated 
+
+    newPos: function () {                            // position of vapire gets updated
         if (this.y < 210) {
             this.speedY = 2;
         }
@@ -75,7 +78,7 @@ var player = {                                  //Player class controls the vamp
         }
 
     },
-    crashWith: function (obs) {                         
+    crashWith: function (obs) {
         if (this.x + 50 > obs.x && this.x < obs.x + obs.width && this.y + 60 > obs.y) {
             return true;
         }
@@ -83,8 +86,8 @@ var player = {                                  //Player class controls the vamp
     }
 }
 function obstacle() {                                                               // colored people (collection class)
-                                                                                    // intialises the random positions of the colored people                                          
-    this.height = Math.floor(20 + Math.random() * (50 - 20 + 1));       
+                                                                                    // intialises the random positions of the colored people
+    this.height = Math.floor(20 + Math.random() * (50 - 20 + 1));
     this.width = Math.floor(10 + Math.random() * (20 - 10 + 1));
     this.x = 1000;
     this.y = gamearea.canvas.height - this.height;
@@ -97,6 +100,9 @@ function obstacle() {                                                           
         else if (this.enemytype == "oper") {
             gamearea.context.drawImage(selfishp, this.x, this.y - 55, 70, this.height + 15);
         }
+        else if (this.enemytype == "tper") {
+          gamearea.context.drawImage(treachp, this.x, this.y - 55, 70, this.height + 15);
+        }
         else {
             gamearea.context.drawImage(dishonestp, this.x, this.y - 55, 70, this.height + 15);
         }
@@ -107,9 +113,9 @@ function obstacle() {                                                           
 
 var gamearea = {                                                    // this class controls the game play interface
     canvas: document.createElement("canvas"),
-    
-    start: function () {                           // calls the start function 
-        this.canvas.height = 500;                               
+
+    start: function () {                           // calls the start function
+        this.canvas.height = 500;
         this.canvas.width = 700;
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.context = this.canvas.getContext("2d");
@@ -119,17 +125,17 @@ var gamearea = {                                                    // this clas
         this.interval = setInterval(this.updateGameArea, 5);
         window.addEventListener("keydown", jump);
     },
-    updateGameArea: function () {    
+    updateGameArea: function () {
         var selfishbar;
-        var dishonestbar;                               // function which ends the game once the vampire crashes with any colored person 
+        var dishonestbar;                               // function which ends the game once the vampire crashes with any colored person
         for (i = 0; i < myObstacles.length; i++) {
-           
+
             if (((player.crashWith(myObstacles[i]))&&(myObstacles[i].enemytype.localeCompare("gper")==0))){//||(selfishbar.value==0 && dishonestbar.value==0)) {  //avoids the bad people
                 gamearea.stop();
                 return;
             }
-            
-            else 
+
+            else
             {
                 //scoreText.update(player.y);
                 //if(player.y==420 && myObstacles[i].enemytype.localeCompare("oper")==0)
@@ -139,27 +145,35 @@ var gamearea = {                                                    // this clas
                     {
                        //print("aa");
                        let selfishbar = document.getElementById("selfishBar");
-                       selfishbar.value -= 0.09; //Or whatever you want to do with it.
+                       selfishbar.value -= 0.9; //Or whatever you want to do with it.
                        //player.eaten();
                     }
-                    else 
+                    else if ((player.crashWith(myObstacles[i]))&&(myObstacles[i].enemytype.localeCompare("pper")==0))
                     {
                        //print("aa");
                        if ((player.crashWith(myObstacles[i]))&&(myObstacles[i].enemytype.localeCompare("pper")==0)){
                        let dishonestbar = document.getElementById("dishonestBar");
-                       dishonestbar.value -= 0.1; }//Or whatever you want to do with it.
+                       dishonestbar.value -= 0.9; }//Or whatever you want to do with it.
+                       //player.eaten();
+                    }
+                    else
+                    {
+                       //print("aa");
+                       if ((player.crashWith(myObstacles[i]))&&(myObstacles[i].enemytype.localeCompare("tper")==0)){
+                       let treachbar = document.getElementById("treachBar");
+                       treachbar.value -= 0.9; }//Or whatever you want to do with it.
                        //player.eaten();
                     }
                        // gamearea.context.drawImage(standimage, player.x, player.y-5, 130, 130);}
                 //}
             }
-            /*if(selfishbar.value==0 && dishonestbar.value==0)
+            if(selfishBar.value==0 && dishonestBar.value==0 && treachBar.value==0)
             {
-                gamearea.stop();
+                gamearea.won();
                 return;
-            }*/
+            }
         }
-        gamearea.clear();                                       
+        gamearea.clear();
         if (everyinterval(gap)) {
             myObstacles.push(new obstacle());
             gap = randGap();
@@ -180,10 +194,18 @@ var gamearea = {                                                    // this clas
     clear: function () {
         gamearea.context.clearRect(0, 0, this.canvas.width, this.canvas.width);
     },
-    stop: function () {                                    
+    stop: function () {
         clearInterval(this.interval);
         gamearea.context.fillStyle = "red";
         gamearea.context.font = "30px Consolas";
         gamearea.context.fillText("GAME OVER!!!", 250, 250);
+        document.getElementsByClassName("resetButton")[0].innerHTML='<button onclick="location.reload();">Try Again</button>';
+    },
+    won: function () {
+        clearInterval(this.interval);
+        gamearea.context.fillStyle = "red";
+        gamearea.context.font = "30px Consolas";
+        gamearea.context.fillText("YOU WON!!!", 250, 250);
+        document.getElementsByClassName("resetButton")[0].innerHTML='<button onclick="location.reload();">Play Again</button>';
     },
 }

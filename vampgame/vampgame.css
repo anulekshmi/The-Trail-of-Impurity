@@ -5,7 +5,7 @@ body {
 canvas {
     background-image: url("g3.gif");
     background-size: 700px 500px;
-    
+
     /*animation: animatedBackground 4s linear infinite;*/
 }
 
@@ -27,48 +27,48 @@ canvas {
 }*/
 
 #selfishBar{
-    
+
 
     width: 300px;
     height: 40px;
     position:absolute;
     top:20%;
     left:75%;
-    background:peru;
+    background:red;
     /*background: linear-gradient(to bottom, #000066 0%, #33ccff 100%);*/
     border-radius: 30px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
   }
-  
+
  /* progress {
     color: lightblue;
   }
-  
+
   progress::-webkit-progress-value {
     background: lightblue;
   }
-  
+
   progress::-moz-progress-bar {
     background: lightcolor;
   }*/
-  
+
   #selfishBar::-webkit-progress-value {
-   
-    
-    background:peru;
+
+
+    background:red;
     /*background: linear-gradient(to bottom, #000066 0%, #33ccff 100%);*/
     border-radius: 30px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
   }
-  
+
   progress::-webkit-progress-bar {
     background: rgb(3, 202, 3);
     border-radius: 30px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
   }
-  
+
   #dishonestBar{
-    
+
 
     width: 300px;
     height: 40px;
@@ -80,31 +80,69 @@ canvas {
     border-radius: 30px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
   }
-  
+
  /* progress {
     color: lightblue;
   }
-  
+
   progress::-webkit-progress-value {
     background: lightblue;
   }
-  
+
   progress::-moz-progress-bar {
     background: lightcolor;
   }*/
-  
+
   #dishonestBar::-webkit-progress-value {
-   
+
     background: purple;
     /*background: linear-gradient(to bottom, #000066 0%, #33ccff 100%);*/
     border-radius: 30px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
   }
-  
+
   progress::-webkit-progress-bar {
     background: rgb(3, 202, 3);
     border-radius: 30px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
   }
-  
- 
+
+  #treachBar{
+
+
+    width: 300px;
+    height: 40px;
+    position:absolute;
+    top:40%;
+    left:75%;
+    background: grey;
+    /*background: linear-gradient(to bottom, #000066 0%, #33ccff 100%);*/
+    border-radius: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+  }
+
+ /* progress {
+    color: lightblue;
+  }
+
+  progress::-webkit-progress-value {
+    background: lightblue;
+  }
+
+  progress::-moz-progress-bar {
+    background: lightcolor;
+  }*/
+
+  #treachBar::-webkit-progress-value {
+
+    background: grey;
+    /*background: linear-gradient(to bottom, #000066 0%, #33ccff 100%);*/
+    border-radius: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+  }
+
+  progress::-webkit-progress-bar {
+    background: rgb(3, 202, 3);
+    border-radius: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+  }
