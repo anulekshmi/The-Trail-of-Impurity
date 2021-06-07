@@ -40,9 +40,10 @@ var scoreText = {                                       // Result Display class
     x: 270,
     y: 100,
     update: function (text) {                               // updates itself through info from the vampire class
+        gamearea.context.fillText("Trail of Impurity", 200, 50);
         gamearea.context.fillStyle = "red";
         gamearea.context.font = "30px Consolas";
-        gamearea.context.fillText(text, 290, 100);
+        gamearea.context.fillText(text, 500, 100);
     }
 }
 var player = {                                  //Player class controls the vampire class
@@ -199,13 +200,13 @@ var gamearea = {                                                    // this clas
         gamearea.context.fillStyle = "red";
         gamearea.context.font = "30px Consolas";
         gamearea.context.fillText("GAME OVER!!!", 250, 250);
-        document.getElementsByClassName("resetButton")[0].innerHTML='<button onclick="location.reload();">Try Again</button>';
+        document.getElementsByClassName("resetButton")[0].innerHTML='<button id="resetbtn" onclick="location.reload();">Try Again</button>';
     },
     won: function () {
         clearInterval(this.interval);
         gamearea.context.fillStyle = "red";
         gamearea.context.font = "30px Consolas";
         gamearea.context.fillText("YOU WON!!!", 250, 250);
-        document.getElementsByClassName("resetButton")[0].innerHTML='<button onclick="location.reload();">Play Again</button>';
+        document.getElementsByClassName("resetButton")[0].innerHTML='<button id="resetbtn" onclick="location.reload();">Play Again</button>';
     },
 }
